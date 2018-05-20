@@ -48,6 +48,29 @@ module ioblock(inout pin,
     bufif1 b1(pin,out,ctrl);
     
 endmodule
+// 4*1 mux module
+module mux2(output out,input ts, input s1,input s0);
+wire w1,w2;
+mux m1(w1,1'b1,ts,s1);
+mux m2(w2,1'b1,1'b0,s1);
+mux m3(out,w1,w2,s0);
+endmodule
+
+// 2*1 mux module
+
+module mux(output out,input a,input b,input s);
+assign out=s?a:b ;
+endmodule
+
+//d flip flop module
+module dff(input d,output q,input clk);
+reg q;
+always@(posedge clk)
+ q<=d;
+endmodule
+
+
+
 
 
 
