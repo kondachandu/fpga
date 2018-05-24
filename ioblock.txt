@@ -1,0 +1,27 @@
+module ioblock(inout pin,
+                input ts,
+                input out,
+                output in,
+                input ioclk
+                          
+    );
+    reg d,dorreg;
+    reg [1:0] tsmux;
+    
+      
+     initial
+     begin
+      tsmux=2'b01;
+      dorreg=1'b1;
+     end
+    
+    wire ctrl,a;
+    
+    mux2 m3(ctrl,ts,tsmux[1],tsmux[0]);
+    buf b2(a,pin);
+     dff ff1(d,q,ioclk);
+    mux m4 (in,a,q,dorreg);
+   
+    bufif1 b1(pin,out,ctrl);
+    
+endmodule
