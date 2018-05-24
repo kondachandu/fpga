@@ -1,0 +1,6 @@
+module mux2(output out,input ts, input s1,input s0);
+wire w1,w2;
+mux m1(w1,1'b1,ts,s1);
+mux m2(w2,1'b1,1'b0,s1);
+mux m3(out,w1,w2,s0);
+endmodule

@@ -1,0 +1,3 @@
+module mux(output out,input a,input b,input s);
+assign out=s?a:b ;
+endmodule

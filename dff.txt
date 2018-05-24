@@ -1,0 +1,5 @@
+module dff(input d,output q,input clk);
+reg q;
+always@(posedge clk)
+ q<=d;
+endmodule
