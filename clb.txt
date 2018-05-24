@@ -41,13 +41,13 @@ module clb2(input a,
        o2m3_1=1'b0;
      end
     
-   
-    wire d0;
-    reg out1,out2;
+    reg out1,out2; //variables used for all the three options
+    
+    wire d0;    //variables and muxes used in option 1
     mux m1(d0,d,q,dqmux1);
     
     
-    wire out3,out4,a1,a2,b1,b2,c1,c2;
+    wire out3,out4,a1,a2,b1,b2,c1,c2; //variables and muxes used for option 2
     mux m7(a1,a,b,o2m1_0);
     mux m8(b1,b,c,o2m2_0);
     mux m9(out3,d,q,dqmux1);
@@ -58,7 +58,7 @@ module clb2(input a,
     mux m13(out4,d,q,dqmux2);
     mux m14(c2,c,out4,o2m3_1);
     
-    wire d3,d2;
+    wire d3,d2;               //variables and muxes used for option 3
     mux m15(d3,d,q,dqmux1);
     mux m16(d2,d,q,dqmux2);
    always@(*)
@@ -184,19 +184,19 @@ module clb2(input a,
    end
        assign g=out2;
        assign f=out1;
-    mux2 m2(s,a,f,1'b0,mux2select[1],mux2select[0]);
+    mux2 m2(s,a,f,1'b0,mux2select[1],mux2select[0]);   // for getting outputs x and y from f and g
     mux2 m3(klk,g,c,k,mux3select[1],mux3select[0]);
     mux2 m4(r,d,g,1'b0,mux4select[1],mux4select[0]);
     mux2 m5(x,f,g,q,mux5select[1],mux5select[0]);
     mux2 m6(y,q,g,f,mux6select[1],mux6select[0]);
-    always@(s or r)
-     begin      
+    always@(s or r)                      //set and reset functions
+     begin                        
       if(s==1'b1)
         q<=1'b1;
        else if(r==1'b1)
          q<=1'b0; 
       end
-    always @(posedge klk)
+    always @(posedge klk)       d flip flp
           q<=f;
     
 endmodule
